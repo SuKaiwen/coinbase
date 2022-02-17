@@ -15,7 +15,7 @@
 .grid .card {
     width: 24%;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid #D3D3D3;
     border-radius: 10px;
     margin-bottom: 1.5%;
     box-sizing: border-box;
@@ -33,7 +33,7 @@
 }
 
 .table {
-    border: 1px solid gray;
+    border: 1px solid #D3D3D3;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 20px;
@@ -48,6 +48,7 @@
 .table-row img {
     width: 25px;
     height: 25px;
+    margin-right: 10px;
 }
 
 .table-row .section-name {
