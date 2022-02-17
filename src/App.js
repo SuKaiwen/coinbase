@@ -1,10 +1,12 @@
 import './App.css';
+import './CSS/Home.css';
+import './CSS/Global.css';
 
 import Home from './Pages/Home';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
       <div>
         <h1>DollarBase</h1>
         <Home />
