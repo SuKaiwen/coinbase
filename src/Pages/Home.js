@@ -15,7 +15,7 @@ function Home(props) {
     return (
         <div className = "home-container">
             <h1>Home</h1>
-            <h2>Popular Coins</h2>
+            <h2 className = "bold">Popular Coins</h2>
             <div className = "grid">
                 {/* Get the first four coins which are the most popular */}
                 {market.slice(0, 4).map(coin => {return (
@@ -52,9 +52,14 @@ function Home(props) {
                 )})}
             </div>
             <h2>Coin List</h2>
+            <div className = "row">
+                <button className = "btn-cir">All</button>
+                <button className = "btn-cir">Gainers</button>
+                <button className = "btn-cir">Losers</button>
+            </div>
             {/* The rest of the coins are displayed in table format */}
             <div className = "table">
-                <div className = "table-row">
+                <div className = "table-row bold">
                     <div className = "section-name">
                         <p>Name</p>
                     </div>
