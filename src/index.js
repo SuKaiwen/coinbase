@@ -4,9 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Routes ,Route, BrowserRouter as Router } from 'react-router-dom';
+
+import Search from './Pages/Search';
+import Coin from './Pages/Coin';
+import Nav from './Components/Nav';
+
+import './CSS/Nav.css';
+import './CSS/Coin.css';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<App/>} />
+        <Route path="/search/:slug" element={<Search/>} />
+        <Route path="/coin/:slug" element={<Coin/>} />
+      </Routes>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

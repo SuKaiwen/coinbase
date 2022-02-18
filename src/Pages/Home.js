@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+
 function Home(props) {
 
     // Top 4 coins
@@ -70,8 +72,8 @@ function Home(props) {
                                 }
                             </div>
                             <div className = "col-2">
-                                <p>24H Low</p>
-                                <h1 className = "gray">${coin.low_24h}</h1>
+                                <p>ATH</p>
+                                <h1 className = "gray">${coin.ath}</h1>
                                 <p>24H Low</p>
                                 <h1 className = "gray">${coin.low_24h}</h1>
                                 <p>Price % Change 24h</p>
@@ -82,7 +84,7 @@ function Home(props) {
                             </div>
                         </div>
                         
-                        <button className = "btn">View More</button>
+                        <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
                     </div>
                 )})}
             </div>
@@ -161,7 +163,7 @@ function Home(props) {
                             <p>{(coin.total_supply/1000000).toFixed(2)}M</p>
                         </div>
                         <div className = "section-price" id = "info">
-                            <button className = "btn">More Info</button>
+                            <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
                         </div>
                     </div>
                 )})}

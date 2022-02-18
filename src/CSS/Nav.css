@@ -1,0 +1,56 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15%;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 7px 0px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.nav .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav h1 {
+    font-size: 25px;
+}
+
+.nav form {
+    margin-left: 20px;
+}
+
+.nav input {
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+@media (width < 1600px) {
+    .nav {
+        padding: 0 5%;
+    }
+}
+
+@media (width < 1268px) {
+    
+}
+
+@media (width < 768px) {
+    .nav h1 {
+        font-size: 20px;
+    }
+
+    .nav input {
+        width: 80%;
+        border: 1px solid black;
+    }
+}

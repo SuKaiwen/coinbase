@@ -1,0 +1,12 @@
+.coin-page .row > *{
+    margin-right: 10px;
+}
+
+.coin-page .coin-price {
+    font-size: 70px;
+    font-weight: 100;
+}
+
+.coin-page .chart {
+    height: 600px;
+}

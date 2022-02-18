@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="container">
       <div>
-        <h1>DollarBase</h1>
         <Home />
       </div>
     </div>
