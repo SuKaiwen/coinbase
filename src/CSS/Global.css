@@ -27,6 +27,16 @@
     border: none;
 }
 
+.btn-cir-active {
+    background-color: blue;
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    margin: 0 10px 10px 0;
+}
+
 .btn-cir {
     background-color: lightblue;
     color: white;

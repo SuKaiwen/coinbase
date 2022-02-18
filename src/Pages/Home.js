@@ -3,14 +3,39 @@ import axios from 'axios';
 
 function Home(props) {
 
-    const [market, setMarket] = useState([]);
+    const [topCoins, setTopCoins] = useState([]);
+    const [coins, setCoins] = useState([]);
+    const [filteredCoins, setFilteredCoins] = useState([]);
+    const [filter, setFilter] = useState("All");
 
     // Get popular coins
     useEffect(() => {
         axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-            .then(result => {setMarket(result.data); console.log(result.data)})
+            .then(result => {
+                setTopCoins(result.data.slice(0,4)); 
+                setCoins(result.data.slice(4));
+                setFilteredCoins(result.data.slice(4));
+                console.log(result.data);
+            })
             .catch(error => {console.log(error)});
     }, []);
+
+    useEffect(() => {
+        console.log("filter set to ", filter);
+        switch (filter) {
+            case "All":
+              setFilteredCoins(coins);
+              break;
+            case "Gainers":
+              setFilteredCoins(coins.filter(x => x.price_change_24h > 0));
+              break;
+            case "Losers":
+              setFilteredCoins(coins.filter(x => x.price_change_24h < 0));
+              break;
+            default:
+              setFilteredCoins(coins);
+          }
+    }, [filter]);
 
     return (
         <div className = "home-container">
@@ -18,7 +43,7 @@ function Home(props) {
             <h2 className = "bold">Popular Coins</h2>
             <div className = "grid">
                 {/* Get the first four coins which are the most popular */}
-                {market.slice(0, 4).map(coin => {return (
+                {topCoins.map(coin => {return (
                     <div className = "card">
                         <img src = {coin.image} alt = {coin.name} />
                         <h1>{coin.name} | <span className = "gray">{coin.symbol.toUpperCase()}</span></h1> 
@@ -53,9 +78,9 @@ function Home(props) {
             </div>
             <h2>Coin List</h2>
             <div className = "row">
-                <button className = "btn-cir">All</button>
-                <button className = "btn-cir">Gainers</button>
-                <button className = "btn-cir">Losers</button>
+                {filter === "All" ? <button className = "btn-cir-active">All</button> : <button className = "btn-cir" onClick={() => setFilter("All")}>All</button>}
+                {filter === "Gainers" ? <button className = "btn-cir-active">Gainers</button> : <button className = "btn-cir" onClick={() => setFilter("Gainers")}>Gainers</button>}
+                {filter === "Losers" ? <button className = "btn-cir-active">Losers</button> : <button className = "btn-cir" onClick={() => setFilter("Losers")}>Losers</button>}
             </div>
             {/* The rest of the coins are displayed in table format */}
             <div className = "table">
@@ -73,10 +98,10 @@ function Home(props) {
                         <p>24h Low</p>
                     </div>
                     <div className = "section-price" id = "price-change">
-                        <p>24h Price Change</p>
+                        <p>Price Change</p>
                     </div>
                     <div className = "section-price" id = "price-change-per">
-                        <p>24h Price Change %</p>
+                        <p>Price Change %</p>
                     </div>
                     <div className = "section-price" id = "last-updated">
                         <p>Last Updated</p>
@@ -89,7 +114,7 @@ function Home(props) {
                     </div>
                 </div>
                 <hr/>
-                {market.slice(4).map(coin => {return (
+                {filteredCoins.map(coin => {return (
                     <div className = "table-row">
                         <div className = "section-name row">
                             <img src = {coin.image} alt = {coin.name} />
