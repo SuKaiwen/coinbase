@@ -3,10 +3,21 @@ import axios from 'axios';
 
 function Home(props) {
 
+    // Top 4 coins
     const [topCoins, setTopCoins] = useState([]);
+
+    // All remaining coins, this const is used to reset filtered coins back to original value
+    // when the user selects "All" button
     const [coins, setCoins] = useState([]);
+
+    // Array to be displayed to the UI
     const [filteredCoins, setFilteredCoins] = useState([]);
+
+    // Filtered keyword
     const [filter, setFilter] = useState("All");
+
+    // Search keyword
+    const [search, setSearch] = useState("");
 
     // Get popular coins
     useEffect(() => {
@@ -15,13 +26,12 @@ function Home(props) {
                 setTopCoins(result.data.slice(0,4)); 
                 setCoins(result.data.slice(4));
                 setFilteredCoins(result.data.slice(4));
-                console.log(result.data);
             })
             .catch(error => {console.log(error)});
     }, []);
 
+    // Button onclick changes the filter value and we catch it here to make adjustments
     useEffect(() => {
-        console.log("filter set to ", filter);
         switch (filter) {
             case "All":
               setFilteredCoins(coins);
@@ -42,7 +52,7 @@ function Home(props) {
             <h1>Home</h1>
             <h2 className = "bold">Popular Coins</h2>
             <div className = "grid">
-                {/* Get the first four coins which are the most popular */}
+                {/* Display first four coins which are the most popular */}
                 {topCoins.map(coin => {return (
                     <div className = "card">
                         <img src = {coin.image} alt = {coin.name} />
@@ -76,12 +86,15 @@ function Home(props) {
                     </div>
                 )})}
             </div>
+
             <h2>Coin List</h2>
+            {/* Buttons to change the filter */}
             <div className = "row">
                 {filter === "All" ? <button className = "btn-cir-active">All</button> : <button className = "btn-cir" onClick={() => setFilter("All")}>All</button>}
                 {filter === "Gainers" ? <button className = "btn-cir-active">Gainers</button> : <button className = "btn-cir" onClick={() => setFilter("Gainers")}>Gainers</button>}
                 {filter === "Losers" ? <button className = "btn-cir-active">Losers</button> : <button className = "btn-cir" onClick={() => setFilter("Losers")}>Losers</button>}
             </div>
+
             {/* The rest of the coins are displayed in table format */}
             <div className = "table">
                 <div className = "table-row bold">
