@@ -8,34 +8,36 @@ import { Line } from 'react-chartjs-2';
 function CoinChart(props) {
 
     const info = props.data;
-    console.log(info);
 
+    // Map x and y axis using time (x axis) and price points (y axis)
     const time = info.map(x => x[0]);
     const data = info.map(x => x[1]);
 
     const newData = [];
+
+    // Reduce values (as there are 700 of them)
     var maxVal = 40;
     var delta = Math.floor( data.length / maxVal );          
     for (var i = 0; i < data.length; i=i+delta) {
         newData.push(data[i]);
     }
 
+    // Get the new reduced time values
     const newTime = [];
     var delta = Math.floor( time.length / maxVal );          
     for (var i = 0; i < time.length; i=i+delta) {
         newTime.push(time[i]);
     }
 
+    // Get the new reduced price points values
     const convertedTime = [];
     for (var i = 0; i < newTime.length; i++){
         var d = new Date();
         d.setTime(newTime[i]);
-        console.log(d.toString().split(" ").slice(1, 4).join(' '));
         convertedTime.push(d.toString().split(" ").slice(1, 4).join(' '));
     }
 
-    console.log(newData);
-
+    // Make the line chart using the new data
     return (
         <div className = "chart">
             <Line

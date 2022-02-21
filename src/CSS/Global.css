@@ -22,6 +22,49 @@
     align-items: center;
 }
 
+.table {
+    border: 1px solid #D3D3D3;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.table-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.table .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.table-row img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.table-row .section-name {
+    width: 20%;
+}
+
+.table-row .section-price {
+    width: 10%;
+}
+
+.table-row .section-price .btn {
+    float: right;
+}
+
+.table-row .section-price.end{
+    float: right;
+    text-align: right;
+}
+
 /* buttons */
 .btn {
     background-color: #1652f0;

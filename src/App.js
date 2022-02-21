@@ -1,6 +1,7 @@
 import './App.css';
 import './CSS/Home.css';
 import './CSS/Global.css';
+import './CSS/Coin.css';
 
 import Home from './Pages/Home';
 

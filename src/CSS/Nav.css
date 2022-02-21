@@ -34,6 +34,15 @@
     border: 1px solid black;
 }
 
+.nav .link {
+    text-decoration: none !important;
+}
+
+.nav a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
 @media (width < 1600px) {
     .nav {
         padding: 0 5%;

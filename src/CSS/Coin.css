@@ -10,3 +10,38 @@
 .coin-page .chart {
     height: 600px;
 }
+
+.coin-page .coin-card {
+    width: 19%;
+    border-radius: 5px;
+    border: 1px solid gray;
+    display: block;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.coin-page #coin-changes {
+    margin-bottom: 100px;
+}
+
+@media (width < 768px) {
+    .coin-page #coin-main-row {
+        flex-direction: column;
+    }
+
+    .coin-page #coin-changes {
+        flex-direction: column;
+    }
+
+    .coin-page .coin-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: none;
+        width: 100%;
+    }
+
+    .coin-page .col-2 {
+        width: 100%;
+    }
+}

@@ -19,7 +19,7 @@ ReactDOM.render(
       <Nav />
       <Routes>
         <Route path="/" element={<App/>} />
-        <Route path="/search/:slug" element={<Search/>} />
+        <Route path="/search/" element={<Search/>} />
         <Route path="/coin/:slug" element={<Coin/>} />
       </Routes>
     </Router>
