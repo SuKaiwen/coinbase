@@ -103,28 +103,28 @@ function Home(props) {
                     <div className = "section-name">
                         <p>Name</p>
                     </div>
-                    <div className = "section-price">
+                    <div className = "section-small">
                         <p>Price</p>
                     </div>
-                    <div className = "section-price" id = "high">
+                    <div className = "section-small" id = "high">
                         <p>24h High</p>
                     </div>
-                    <div className = "section-price" id = "low">
+                    <div className = "section-small" id = "low">
                         <p>24h Low</p>
                     </div>
-                    <div className = "section-price" id = "price-change">
+                    <div className = "section-small" id = "price-change">
                         <p>Price Change</p>
                     </div>
-                    <div className = "section-price" id = "price-change-per">
+                    <div className = "section-small" id = "price-change-per">
                         <p>Price Change %</p>
                     </div>
-                    <div className = "section-price" id = "last-updated">
+                    <div className = "section-small" id = "last-updated">
                         <p>Last Updated</p>
                     </div>
-                    <div className = "section-price" id = "supply">
+                    <div className = "section-small" id = "supply">
                         <p>Supply</p>
                     </div>
-                    <div className = "section-price end" id = "info">
+                    <div className = "section-small" id = "info">
                         <p>More Info</p>
                     </div>
                 </div>
@@ -133,36 +133,40 @@ function Home(props) {
                     <div className = "table-row">
                         <div className = "section-name row">
                             <img src = {coin.image} alt = {coin.name} />
-                            <p>{coin.name} | <span className = "gray">{coin.symbol.toUpperCase()}</span></p> 
+                            <p>{coin.name} | <span className = "gray">{coin.symbol.toUpperCase()} </span></p> 
+                            {coin.price_change_percentage_24h < 0 ? 
+                                <p className = "red"><i class="fas fa-chevron-down"></i></p>
+                                : <p className = "green"><i class="fas fa-chevron-up"></i></p>
+                            }
                         </div>
-                        <div className = "section-price">
+                        <div className = "section-small">
                             <p className = "gray">${coin.current_price}</p>
                         </div>
-                        <div className = "section-price" id = "high">
+                        <div className = "section-small" id = "high">
                             <p className = "gray">${coin.high_24h}</p>
                         </div>
-                        <div className = "section-price" id = "low">
+                        <div className = "section-small" id = "low">
                             <p className = "gray">${coin.low_24h}</p>
                         </div>
-                        <div className = "section-price" id = "price-change">
+                        <div className = "section-small" id = "price-change">
                             {coin.price_change_percentage_24h < 0 ? 
                                 <p className = "red">${coin.price_change_24h.toFixed(2)}</p>
                                 : <p className = "green">${coin.price_change_24h.toFixed(2)}</p>
                             }
                         </div>
-                        <div className = "section-price" id = "price-change-per">
+                        <div className = "section-small" id = "price-change-per">
                             {coin.price_change_percentage_24h < 0 ? 
                                 <p className = "red">{coin.price_change_percentage_24h.toFixed(2)}%</p>
                                 : <p className = "green">{coin.price_change_percentage_24h.toFixed(2)}%</p>
                             }
                         </div>
-                        <div className = "section-price" id = "last-updated">
+                        <div className = "section-small" id = "last-updated">
                             <p>{coin.last_updated.split("T")[0]}</p>
                         </div>
-                        <div className = "section-price" id = "supply">
+                        <div className = "section-small" id = "supply">
                             <p>{(coin.total_supply/1000000).toFixed(2)}M</p>
                         </div>
-                        <div className = "section-price" id = "info">
+                        <div className = "section-small" id = "info">
                             <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
                         </div>
                     </div>

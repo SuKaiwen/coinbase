@@ -53,28 +53,35 @@
     align-items: center;
 }
 
-.table-row img {
+.table img {
     width: 25px;
     height: 25px;
     margin-right: 10px;
+}
+
+.table-row i {
+    margin-left: 10px;
 }
 
 .table-row .section-name {
     width: 20%;
 }
 
-.table-row .section-price {
+.table-row .section-small {
     width: 10%;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.table-row .section-price .btn {
+.table-row .section-small .btn {
     float: right;
 }
 
-.table-row .section-price.end{
+.table-row .section-small.end{
     float: right;
     text-align: right;
 }
+
 
 /* ids for easy deletion */
 #last-updated { display: flex; }
@@ -102,12 +109,16 @@
         width: 49%;
     }
 
-    #last-updated, #supply, #price-change {
+    #last-updated, #supply, #price-change, #high, #low {
         display: none;
     }
 
-    .table-row .section-price {
-        width: 16%;
+    .table-row .section-small {
+        width: 20%;
+    }
+
+    .table-row .section-name {
+        width: 40%;
     }
 }
 
@@ -120,7 +131,7 @@
         display: none;
     }
 
-    .table-row .section-price {
+    .table-row .section-small {
         width: 30%;
     }
 

@@ -52,37 +52,37 @@ function Search(props) {
                         <div>
                             {/* The rest of the coins are displayed in table format */}
                             <div className = "table">
-                                <div className = "table-row bold">
-                                    <div className = "section-name">
+                                <div className = "search-row bold">
+                                    <div className = "search-column">
                                         <p>Name</p>
                                     </div>
-                                    <div className = "section-name">
+                                    <div className = "search-column" id = "collapse">
                                         <p>Symbol</p>
                                     </div>
-                                    <div className = "section-name">
+                                    <div className = "search-column" id = "collapse">
                                         <p>Market Cap Rank</p>
                                     </div>
-                                    <div className = "section-name">
+                                    <div className = "search-column flex-end">
                                         <p>More Info</p>
                                     </div>
                                 </div>
                                 <hr/>
                                 {searchResults.map(coin => {return (
-                                    <div className = "table-row">
-                                        <div className = "section-name row">
+                                    <div className = "search-row">
+                                        <div className = "search-column">
                                             <img src = {coin.thumb} alt = {coin.name} />
-                                            <p>{coin.name} | <span className = "gray">{coin.symbol.toUpperCase()}</span></p> 
+                                            <p>{coin.name}</p> 
                                         </div>
-                                        <div className = "section-name">
+                                        <div className = "search-column" id = "collapse">
                                             <p className = "gray">${coin.symbol}</p>
                                         </div>
-                                        <div className = "section-name" id = "high">
+                                        <div className = "search-column" id = "collapse">
                                             {coin.market_cap_rank ? 
                                                 <p className = "gray">#{coin.market_cap_rank}</p>
                                                 : <p className = "gray">No Rank</p>
                                             }
                                         </div>
-                                        <div className = "section-name" id = "info">
+                                        <div className = "search-column flex-end">
                                             <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
                                         </div>
                                     </div>
