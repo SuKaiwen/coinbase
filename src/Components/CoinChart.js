@@ -16,7 +16,7 @@ function CoinChart(props) {
     const newData = [];
 
     // Reduce values (as there are 700 of them)
-    var maxVal = 40;
+    var maxVal = 100;
     var delta = Math.floor( data.length / maxVal );          
     for (var i = 0; i < data.length; i=i+delta) {
         newData.push(data[i]);
@@ -49,19 +49,16 @@ function CoinChart(props) {
                       {
                         label:'Price AUD',
                         data:newData,
-                        backgroundColor:[
-                          'rgba(255, 99, 132, 0.6)',
-                          'rgba(54, 162, 235, 0.6)',
-                          'rgba(255, 206, 86, 0.6)',
-                          'rgba(75, 192, 192, 0.6)',
-                          'rgba(153, 102, 255, 0.6)',
-                          'rgba(255, 159, 64, 0.6)',
-                          'rgba(255, 99, 132, 0.6)'
-                        ]
+                        borderColor: "#1652f0"
                       }
                     ]
                 }}
                 options={{
+                    elements: {
+                        point: {
+                            radius: 1,
+                        },
+                    },
                     maintainAspectRatio: false,
                     legend: {
                         display: false

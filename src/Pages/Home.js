@@ -62,9 +62,9 @@ function Home(props) {
                         <div className = "row">
                             <div className = "col-2">
                                 <p>Price</p>
-                                <h1 className = "gray">${coin.current_price}</h1>
+                                <h1 className = "blue">${coin.current_price}</h1>
                                 <p>24H High</p>
-                                <h1 className = "gray">${coin.high_24h}</h1>
+                                <h1 className = "blue">${coin.high_24h}</h1>
                                 <p>Price Change 24h</p>
                                 {coin.price_change_percentage_24h < 0 ? 
                                     <h1 className = "red">${coin.price_change_24h.toFixed(2)}</h1>
@@ -73,9 +73,9 @@ function Home(props) {
                             </div>
                             <div className = "col-2">
                                 <p>ATH</p>
-                                <h1 className = "gray">${coin.ath}</h1>
+                                <h1 className = "blue">${coin.ath}</h1>
                                 <p>24H Low</p>
-                                <h1 className = "gray">${coin.low_24h}</h1>
+                                <h1 className = "blue">${coin.low_24h}</h1>
                                 <p>Price % Change 24h</p>
                                 {coin.price_change_percentage_24h < 0 ? 
                                     <h1 className = "red">{coin.price_change_percentage_24h.toFixed(2)}%</h1>

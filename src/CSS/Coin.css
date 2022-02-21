@@ -5,6 +5,7 @@
 .coin-page .coin-price {
     font-size: 70px;
     font-weight: 100;
+    color: #1652f0;
 }
 
 .coin-page .chart {
@@ -24,7 +25,7 @@
     margin-bottom: 100px;
 }
 
-@media (width < 768px) {
+@media (width < 1000px) {
     .coin-page #coin-main-row {
         flex-direction: column;
     }
