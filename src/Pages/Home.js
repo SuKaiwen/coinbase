@@ -129,7 +129,7 @@ function Home(props) {
                         <p>Price Change</p>
                     </div>
                     <div className = "section-small" id = "price-change-per">
-                        <p>Price Change %</p>
+                        <p>Change %</p>
                     </div>
                     <div className = "section-small" id = "last-updated">
                         <p>Last Updated</p>

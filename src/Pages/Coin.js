@@ -191,8 +191,6 @@ function Coin(props) {
                                     <h1>Loading Chart...</h1>
                                 </div>
                             }
-                            
-                            
                         </div>
                     </div>
                     <h1>Previous Changes</h1>
