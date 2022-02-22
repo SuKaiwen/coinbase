@@ -21,9 +21,12 @@ function Home(props) {
     // Search keyword
     const [search, setSearch] = useState("");
 
+    // Pagination
+    const [page, setPage] = useState(1);
+
     // Get popular coins
     useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc&per_page=20&page=1&sparkline=false')
             .then(result => {
                 setTopCoins(result.data.slice(0,4)); 
                 setCoins(result.data.slice(4));
@@ -31,6 +34,16 @@ function Home(props) {
             })
             .catch(error => {console.log(error)});
     }, []);
+
+    useEffect(() => {
+        console.log(page);
+        axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc&per_page=20&page=${page}&sparkline=false`)
+            .then(result => {
+                setCoins(result.data);
+                setFilteredCoins(result.data);
+            })
+            .catch(error => {console.log(error)});
+    }, [page]);
 
     // Button onclick changes the filter value and we catch it here to make adjustments
     useEffect(() => {
@@ -172,6 +185,24 @@ function Home(props) {
                     </div>
                 )})}
             </div>
+
+            {/* Pagination Component */}
+            {page === 1 ?
+                <div className = "row justify-cen">
+                    <button className = "number"><i class="fas fa-chevron-left"></i></button>
+                    <button className = "number number-active">1</button>
+                    <button onClick = {() => setPage(2)} className = "number">2</button>
+                    <button onClick = {() => setPage(3)} className = "number">3</button>
+                    <button onClick = {() => setPage(2)} className = "number"><i class="fas fa-chevron-right"></i></button>
+                </div> :
+                <div className = "row justify-cen">
+                    <button onClick = {() => setPage(page - 1)} className = "number"><i class="fas fa-chevron-left"></i></button>
+                    <button onClick = {() => setPage(page - 1)}className = "number">{page - 1}</button>
+                    <button className = "number number-active">{page}</button>
+                    <button onClick = {() => setPage(page + 1)} className = "number">{page + 1}</button>
+                    <button onClick = {() => setPage(page + 1)} className = "number"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            }
         </div>
     );
 }

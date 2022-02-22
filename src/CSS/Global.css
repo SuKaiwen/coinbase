@@ -26,8 +26,30 @@
     color: gray;
 }
 
+.number {
+    width: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 15px;
+    border: none;
+    background-color: white;
+    margin: 25px 5px;
+}
+
+.number-active {
+    background-color: #1652f0;
+    color: white;
+}
+
+/* Flex box */
+
 .flex-end {
     justify-content: flex-end;
+}
+
+.justify-cen {
+    justify-content: center;
 }
 
 /* buttons */

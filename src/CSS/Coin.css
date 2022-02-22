@@ -15,14 +15,9 @@
 .coin-page .coin-card {
     width: 19%;
     border-radius: 5px;
-    border: 1px solid gray;
     display: block;
     box-sizing: border-box;
     padding: 20px;
-}
-
-.coin-page #coin-changes {
-    margin-bottom: 100px;
 }
 
 @media (width < 1000px) {
