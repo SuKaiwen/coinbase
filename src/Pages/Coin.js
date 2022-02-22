@@ -21,7 +21,9 @@ function Coin(props) {
     // Setting to select which graph to view
     const [timeSetting, setTimeSetting] = useState("180d");
 
+    // Loading stuff
     const [load, setLoad] = useState(false);
+    const [chartLoad, setChartLoad] = useState(false);
 
     // New description after filtering any html tags such as <a> and <p>
     const [filteredDesc, setFilteredDesc] = useState('');
@@ -92,6 +94,7 @@ function Coin(props) {
 
                 if(response.status !== 200 || response90d.status !== 200 || response180d.status !== 200){
                     console.log(response.status);
+                    setChartLoad(false);
                 }else{
                     response = await response.json();
                     response90d = await response90d.json();
@@ -100,17 +103,20 @@ function Coin(props) {
                     setGraphInfo(response.prices);
                     setGraphInfo90d(response90d.prices);
                     setGraphInfo180d(response180d.prices);
+                    setChartLoad(true);
                 }
             }
             fetchCoinGraph();
         } catch (error) {
             console.log(error);
             setLoad(false);
+            setChartLoad(false);
         }
 
         return () => {
             setLoad(false);
-            setGraphInfo([]);    
+            setChartLoad(false);  
+            setGraphInfo([]);  
         };
     }, []);
 
@@ -168,15 +174,24 @@ function Coin(props) {
                             </div>
 
                             {/* Depending on time frame display the correct chart */}
-                            {timeSetting === "30d" ? <CoinChart data = {graphInfo}/> :
+                            {chartLoad ? 
                                 <div>
-                                    {timeSetting === "90d" ? <CoinChart data = {graphInfo90d}/> :
+                                    {timeSetting === "30d" ? <CoinChart data = {graphInfo}/> :
                                         <div>
-                                            <CoinChart data = {graphInfo180d}/>
+                                            {timeSetting === "90d" ? <CoinChart data = {graphInfo90d}/> :
+                                                <div>
+                                                    <CoinChart data = {graphInfo180d}/>
+                                                </div>
+                                            }
                                         </div>
                                     }
                                 </div>
+                                :
+                                <div>
+                                    <h1>Loading Chart...</h1>
+                                </div>
                             }
+                            
                             
                         </div>
                     </div>
