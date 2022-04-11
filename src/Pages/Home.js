@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
+import TopCoinsCard from '../Components/TopCoinsCard';
+import TableRow from '../Components/TableRow';
 
 function Home(props) {
 
@@ -69,36 +71,18 @@ function Home(props) {
             <div className = "grid">
                 {/* Display first four coins which are the most popular */}
                 {topCoins.map(coin => {return (
-                    <div className = "card">
-                        <img src = {coin.image} alt = {coin.name} />
-                        <h1>{coin.name} | <span className = "gray">{coin.symbol.toUpperCase()}</span></h1> 
-                        <div className = "row">
-                            <div className = "col-2">
-                                <p>Price</p>
-                                <h1 className = "blue">${coin.current_price}</h1>
-                                <p>24H High</p>
-                                <h1 className = "blue">${coin.high_24h}</h1>
-                                <p>Price Change 24h</p>
-                                {coin.price_change_percentage_24h < 0 ? 
-                                    <h1 className = "red">${coin.price_change_24h.toFixed(2)}</h1>
-                                    : <h1 className = "green">${coin.price_change_24h.toFixed(2)}</h1>
-                                }
-                            </div>
-                            <div className = "col-2">
-                                <p>ATH</p>
-                                <h1 className = "blue">${coin.ath}</h1>
-                                <p>24H Low</p>
-                                <h1 className = "blue">${coin.low_24h}</h1>
-                                <p>Price % Change 24h</p>
-                                {coin.price_change_percentage_24h < 0 ? 
-                                    <h1 className = "red">{coin.price_change_percentage_24h.toFixed(2)}%</h1>
-                                    : <h1 className = "green">{coin.price_change_percentage_24h.toFixed(2)}%</h1>
-                                }
-                            </div>
-                        </div>
-                        
-                        <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
-                    </div>
+                    <TopCoinsCard
+                        image = {coin.image}
+                        name = {coin.name}
+                        symbol = {coin.symbol}
+                        price = {coin.current_price}
+                        high_24h = {coin.high_24h}
+                        low_24h = {coin.low_24h}
+                        price_change_percentage_24h = {coin.price_change_percentage_24h}
+                        price_change_24h = {coin.price_change_24h}
+                        ath = {coin.ath}
+                        id = {coin.id}
+                    />
                 )})}
             </div>
 
@@ -143,46 +127,19 @@ function Home(props) {
                 </div>
                 <hr/>
                 {filteredCoins.map(coin => {return (
-                    <div className = "table-row">
-                        <div className = "section-name row">
-                            <img src = {coin.image} alt = {coin.name} />
-                            <p>{coin.name} | <span className = "gray">{coin.symbol.toUpperCase()} </span></p> 
-                            {coin.price_change_percentage_24h < 0 ? 
-                                <p className = "red"><i class="fas fa-chevron-down"></i></p>
-                                : <p className = "green"><i class="fas fa-chevron-up"></i></p>
-                            }
-                        </div>
-                        <div className = "section-small">
-                            <p className = "gray">${coin.current_price}</p>
-                        </div>
-                        <div className = "section-small" id = "high">
-                            <p className = "gray">${coin.high_24h}</p>
-                        </div>
-                        <div className = "section-small" id = "low">
-                            <p className = "gray">${coin.low_24h}</p>
-                        </div>
-                        <div className = "section-small" id = "price-change">
-                            {coin.price_change_percentage_24h < 0 ? 
-                                <p className = "red">${coin.price_change_24h.toFixed(2)}</p>
-                                : <p className = "green">${coin.price_change_24h.toFixed(2)}</p>
-                            }
-                        </div>
-                        <div className = "section-small" id = "price-change-per">
-                            {coin.price_change_percentage_24h < 0 ? 
-                                <p className = "red">{coin.price_change_percentage_24h.toFixed(2)}%</p>
-                                : <p className = "green">{coin.price_change_percentage_24h.toFixed(2)}%</p>
-                            }
-                        </div>
-                        <div className = "section-small" id = "last-updated">
-                            <p>{coin.last_updated.split("T")[0]}</p>
-                        </div>
-                        <div className = "section-small" id = "supply">
-                            <p>{(coin.total_supply/1000000).toFixed(2)}M</p>
-                        </div>
-                        <div className = "section-small" id = "info">
-                            <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
-                        </div>
-                    </div>
+                    <TableRow 
+                        image = {coin.image}
+                        name = {coin.name}
+                        symbol = {coin.symbol}
+                        price_change_percentage_24h = {coin.price_change_percentage_24h}
+                        current_price = {coin.current_price}
+                        high_24h = {coin.high_24h}
+                        low_24h = {coin.low_24h}
+                        price_change_24h = {coin.price_change_24h}
+                        last_updated = {coin.last_updated}
+                        total_supply = {coin.total_supply}
+                        id = {coin.id}
+                    />
                 )})}
             </div>
 

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+
+// Components
+import SearchRow from '../Components/SearchRow';
 
 function Search(props) {
 
@@ -68,24 +70,13 @@ function Search(props) {
                                 </div>
                                 <hr/>
                                 {searchResults.map(coin => {return (
-                                    <div className = "search-row">
-                                        <div className = "search-column">
-                                            <img src = {coin.thumb} alt = {coin.name} />
-                                            <p>{coin.name}</p> 
-                                        </div>
-                                        <div className = "search-column" id = "collapse">
-                                            <p className = "gray">${coin.symbol}</p>
-                                        </div>
-                                        <div className = "search-column" id = "collapse">
-                                            {coin.market_cap_rank ? 
-                                                <p className = "gray">#{coin.market_cap_rank}</p>
-                                                : <p className = "gray">No Rank</p>
-                                            }
-                                        </div>
-                                        <div className = "search-column flex-end">
-                                            <Link to={`/coin/${coin.id}`}><button className = "btn">View More</button></Link>
-                                        </div>
-                                    </div>
+                                    <SearchRow 
+                                        thumb = {coin.thumb}
+                                        name = {coin.name}
+                                        symbol = {coin.symbol}
+                                        market_cap_rank = {coin.market_cap_rank}
+                                        id = {coin.id}
+                                    />
                                 )})}
                             </div>
                         </div>

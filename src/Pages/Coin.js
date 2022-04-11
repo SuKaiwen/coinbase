@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
+// Components
+import ChangeCard from '../Components/ChangeCard';
+import CoinDetailSummary from '../Components/CoinDetailSummary';
+
 import CoinChart from '../Components/CoinChart';
 
 function Coin(props) {
@@ -126,44 +130,23 @@ function Coin(props) {
                 <div className = "coin-page">
                     <p className = "gray">coinbased - {coinInfo.name.toLowerCase()}</p>
                     <div className = "row" id = "coin-main-row">
-                        <div className = "col-2">
-                            <div className = "row">
-                                <img src = {coinInfo.image.small} alt = {coinInfo.name} />
-                                <h1>{coinInfo.name}</h1>
-                                <h1 className = "gray">{coinInfo.symbol.toUpperCase()} / AUD</h1>
-                            </div>
-                            <h1 className = "coin-price">A${coinInfo.market_data.current_price.aud}</h1>
-                            <h1>Market Stats</h1>
-                            <div className = "row">
-                                <div className = "col-2">
-                                    <p>Market Rank</p>
-                                    <h1>#{coinInfo.market_cap_rank}</h1>
-                                    <p>ATH</p>
-                                    <h1 className = "green">${coinInfo.market_data.ath.aud}</h1>
-                                    <p>24H High</p>
-                                    <h1>${coinInfo.market_data.high_24h.aud}</h1>
-                                    <p>Price Change 24h</p>
-                                    {coinInfo.market_data.price_change_24h_in_currency.aud < 0 ? 
-                                        <h1 className = "red">${coinInfo.market_data.price_change_24h_in_currency.aud.toFixed(2)}</h1>
-                                        : <h1 className = "green">${coinInfo.market_data.price_change_24h_in_currency.aud.toFixed(2)}</h1>
-                                    }
-                                </div>
-                                <div className = "col-2">
-                                    <p>-</p>
-                                    <h1>-</h1>
-                                    <p>ATL</p>
-                                    <h1 className = "red">${coinInfo.market_data.atl.aud}</h1>
-                                    <p>24H Low</p>
-                                    <h1>${coinInfo.market_data.low_24h.aud}</h1>
-                                    <p>Price % Change 24h</p>
-                                    {coinInfo.market_data.price_change_24h_in_currency.aud < 0 ? 
-                                        <h1 className = "red">{coinInfo.market_data.price_change_percentage_24h.toFixed(2)}%</h1>
-                                        : <h1 className = "green">{coinInfo.market_data.price_change_percentage_24h.toFixed(2)}%</h1>
-                                    }
-                                </div>
-                            </div>
-                            
-                        </div>
+
+                        {/* Summary Component LHS bar */}
+                        <CoinDetailSummary
+                            image = {coinInfo.image.small}
+                            name = {coinInfo.name}
+                            symbol = {coinInfo.symbol}
+                            price = {coinInfo.market_data.current_price.aud}
+                            market_cap_rank = {coinInfo.market_cap_rank}
+                            ath = {coinInfo.market_data.ath.aud}
+                            atl = {coinInfo.market_data.atl.aud}
+                            high_24h = {coinInfo.market_data.high_24h.aud}
+                            low_24 = {coinInfo.market_data.low_24h.aud}
+                            price_change_24 = {coinInfo.market_data.price_change_24h_in_currency.aud}
+                            price_change_percent_24 = {coinInfo.market_data.price_change_percentage_24h}
+                        />
+
+                        {/* Line Chart Component */}
                         <div className = "col-2">
                             <h1>Market Chart</h1>
                             {/* Buttons to select which timeframe to view */}
@@ -193,18 +176,17 @@ function Coin(props) {
                             }
                         </div>
                     </div>
+                    
                     <h1>Previous Changes</h1>
                     <div className = "row" id = "coin-changes">
                         {prevChanges.map(change => {return (
-                            <div className = "coin-card">
-                                <p>{change.title}</p>
-                                {change.value < 0 ? 
-                                    <h1 className = "red">{change.value}% <i class="fas fa-chevron-down"></i></h1>
-                                    : <h1 className = "green">{change.value}% <i class="fas fa-chevron-up"></i></h1>
-                                }
-                            </div>
+                            <ChangeCard
+                                title = {change.title}
+                                value = {change.value}
+                            />
                         )})}
                     </div>
+                    
                     <h1>About {coinInfo.name}</h1>
                     <p className = "gray">{filteredDesc}</p>
                 </div>
