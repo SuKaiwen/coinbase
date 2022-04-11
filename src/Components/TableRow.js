@@ -2,6 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function TableRow(props) {
+
+    // Formats in M, B, T or Q
+    const formatPrice = (supply) => {
+        let suffix = ["M", "B", "T", "Q"]
+        let suffix_count = 0;
+
+        while(supply > 1000){
+            if(supply < 1000) {
+                break;
+            }
+
+            if(suffix_count > 3){
+                break;
+            }
+
+            suffix_count++;
+            supply = supply/1000;
+        }
+        
+        return supply.toFixed(2).toString().concat(suffix[suffix_count]);
+    }
+
     return (
         <div className = "table-row">
             <div className = "section-name row">
@@ -37,7 +59,7 @@ function TableRow(props) {
                 <p>{props.last_updated.split("T")[0]}</p>
             </div>
             <div className = "section-small" id = "supply">
-                <p>{(props.total_supply/1000000).toFixed(2)}M</p>
+                <p>{formatPrice(props.total_supply/1000000)}</p>
             </div>
             <div className = "section-small" id = "info">
                 <Link to={`/coin/${props.id}`}><button className = "btn">View More</button></Link>
